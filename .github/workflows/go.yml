@@ -20,6 +20,9 @@ jobs:
       uses: actions/setup-go@v4
       with:
         go-version: '1.24'
-
+        
+    - name: Install dependencies
+      run: go mod tidy
+      
     - name: Test
       run: go test -v *_test.go uaes.go
