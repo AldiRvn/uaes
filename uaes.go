@@ -31,6 +31,7 @@ func (uaes *Aes) Decrypt(enc string) (res string) {
 	res = string(dec)
 	return
 }
+
 func (uaes *Aes) DecryptToMap(enc string) (res map[string]any) {
 	if err := json.Unmarshal([]byte(uaes.Decrypt(enc)), &res); err != nil {
 		log.Println(err)
@@ -38,6 +39,7 @@ func (uaes *Aes) DecryptToMap(enc string) (res map[string]any) {
 	}
 	return
 }
+
 func (uaes *Aes) Encrypt(target []byte) (res string, err error) {
 	resRaw, err := openssl.New().EncryptBytes(uaes.secretKey, target, uaes.cg)
 	if err != nil {
@@ -47,6 +49,7 @@ func (uaes *Aes) Encrypt(target []byte) (res string, err error) {
 	res = string(resRaw)
 	return
 }
+
 func (uaes *Aes) EncryptAny(target any) (res string, err error) {
 	asJson, err := json.Marshal(target)
 	if err != nil {
