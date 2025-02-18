@@ -10,11 +10,8 @@ on:
     branches: [ "master" ]
 
 jobs:
-
-  build:
+  test:
     runs-on: ubuntu-latest
-      - nscloud-cache-size-10mb
-
     steps:
     - uses: actions/checkout@v4
 
@@ -26,8 +23,5 @@ jobs:
     - name: Install dependencies
       run: go mod tidy
 
-    - name: Cache Go Modules
-      uses: AtomiCloud/actions.cache-go@v1.0.0
-        
     - name: Test
       run: go test -v *_test.go uaes.go
